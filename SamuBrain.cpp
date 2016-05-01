@@ -898,7 +898,7 @@ std::string SamuBrain::get_foobar ( MORGAN samuQl ) const
 
   auto foobar = std::find_if (
                   std::begin ( m_brain ), std::end ( m_brain ),
-                  [=] ( auto&& mpu )
+                  [=] ( /*auto&& mpu*/ decltype(*std::begin(m_brain)) &&mpu ) /* Így elegendő a -std=c++11 kapcsoló. */
   {
     return ( mpu.second ) == samuQl;
   }

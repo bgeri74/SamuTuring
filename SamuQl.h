@@ -1278,7 +1278,7 @@ public:
 
         std::sort (
             std::begin ( tmp ), std::end ( tmp ),
-        [=] ( auto&& t1, auto&&t2 ) {
+        [=] ( /*auto&& t1, auto&&t2*/ decltype(*std::begin(tmp)) &&t1, decltype(*std::begin(tmp)) &&t2 ) { /* Így elegendő a -std=c++11 kapcsoló. */
             return t1.second > t2.second;
         }
         );
